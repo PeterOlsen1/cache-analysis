@@ -6,15 +6,15 @@ struct Fifo {
 }
 
 impl SimpleCache for Fifo {
-    fn get(key: &str) -> String {
+    fn get(&self, key: &str) -> String {
         key.to_owned()
     }
 
-    fn put(key: &str, value: &str) {
+    fn put(&mut self, key: &str, value: &str) {
         ()
     }
 
-    fn evict() {
+    fn evict(&mut self) {
         ()
     }
 }

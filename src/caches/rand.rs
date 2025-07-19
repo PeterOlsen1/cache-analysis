@@ -5,16 +5,24 @@ struct Rand {
     table: HashMap<String, String>,
 }
 
+impl Rand {
+    fn new() -> Self {
+        Rand {
+            table: HashMap::new()
+        }
+    }
+}
+
 impl SimpleCache for Rand {
-    fn get(key: &str) -> String {
+    fn get(&self, key: &str) -> String {
         key.to_owned()
     }
 
-    fn put(key: &str, value: &str) {
+    fn put(&mut self, key: &str, value: &str) {
         ()
     }
 
-    fn evict() {
+    fn evict(&mut self) {
         ()
     }
 }
