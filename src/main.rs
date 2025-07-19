@@ -1,7 +1,6 @@
-mod traits;
 mod caches;
+mod traits;
 mod utils;
-
 
 fn main() {
     println!("Hello, world!");
