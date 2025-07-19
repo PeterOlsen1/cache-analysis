@@ -6,7 +6,11 @@ struct LRU {
 }
 
 impl SimpleCache for LRU {
-    fn get(&self, key: &str) -> String {
+    fn size(&self) -> usize {
+        2
+    }
+
+    fn get(&mut self, key: &str) -> Option<String> {
         key.to_owned()
     }
 
@@ -16,5 +20,9 @@ impl SimpleCache for LRU {
 
     fn evict(&mut self) {
         ()
+    }
+
+    fn contains(&self, key: &str) -> bool {
+        true
     }
 }

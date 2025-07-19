@@ -11,6 +11,12 @@ macro_rules! pathify {
 }
 
 ///
+/// Max size of the cache. Once we get to this point,
+/// start evicting members.
+///
+pub const MAX_SIZE: usize = 256;
+
+///
 /// Write a single key/value pair to disk
 ///
 pub fn write_file(key: &str, value: &str) -> Result<()> {
