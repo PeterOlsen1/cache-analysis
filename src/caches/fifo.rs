@@ -1,14 +1,14 @@
 use crate::traits::SimpleCache;
-use crate::utils::{read_file, write_file, MAX_SIZE};
+use crate::utils::{MAX_SIZE, read_file, write_file};
 use std::collections::{HashMap, VecDeque};
 
-struct Fifo {
+pub struct Fifo {
     table: HashMap<String, String>,
     order: VecDeque<String>,
 }
 
 impl Fifo {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Fifo {
             table: HashMap::new(),
             order: VecDeque::new(),
@@ -17,13 +17,17 @@ impl Fifo {
 }
 
 impl SimpleCache for Fifo {
+    fn name(&self) -> String {
+        "FIFO cache".to_string()
+    }
+
     fn size(&self) -> usize {
         self.table.len()
     }
 
     fn get(&mut self, key: &str) -> Option<String> {
         if self.contains(key) {
-            return self.table.get(key).cloned()
+            return self.table.get(key).cloned();
         }
 
         match read_file(key) {
@@ -35,7 +39,7 @@ impl SimpleCache for Fifo {
                 self.order.push_back(key.to_string());
                 Some(value)
             }
-            Err(_) => None
+            Err(_) => None,
         }
     }
 

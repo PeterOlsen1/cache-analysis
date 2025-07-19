@@ -14,13 +14,16 @@ macro_rules! pathify {
 /// Max size of the cache. Once we get to this point,
 /// start evicting members.
 ///
-pub const MAX_SIZE: usize = 256;
+pub const MAX_SIZE: usize = 32;
 
 ///
 /// Write a single key/value pair to disk
 ///
 pub fn write_file(key: &str, value: &str) -> Result<()> {
     let path = pathify!(key);
+    if let Some(parent) = std::path::Path::new(&path).parent() {
+        fs::create_dir_all(parent)?;
+    }
     let mut file = File::create(path)?;
     file.write_all(value.as_bytes())?;
     Ok(())

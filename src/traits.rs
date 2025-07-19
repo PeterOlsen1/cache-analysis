@@ -34,4 +34,9 @@ pub trait SimpleCache {
     /// Check if the given cache contains a key
     ///
     fn contains(&self, key: &str) -> bool;
+
+    ///
+    /// Print the name of the given cache
+    ///
+    fn name(&self) -> String;
 }

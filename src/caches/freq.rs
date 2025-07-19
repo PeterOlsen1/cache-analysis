@@ -1,11 +1,23 @@
 use crate::traits::SimpleCache;
 use std::collections::HashMap;
 
-struct Freq {
+pub struct Freq {
     table: HashMap<String, String>,
 }
 
+impl Freq {
+    pub fn new() {
+        Freq {
+            talbe: HashMap::new(),
+        }
+    }
+}
+
 impl SimpleCache for Freq {
+    fn name(&self) -> String {
+        "Frequency cache".to_string()
+    }
+
     fn size(&self) -> usize {
         2
     }

@@ -3,12 +3,12 @@ use crate::utils::{MAX_SIZE, read_file, write_file};
 use rand::Rng;
 use std::collections::HashMap;
 
-struct Rand {
+pub struct Rand {
     table: HashMap<String, String>,
 }
 
 impl Rand {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Rand {
             table: HashMap::new(),
         }
@@ -16,6 +16,10 @@ impl Rand {
 }
 
 impl SimpleCache for Rand {
+    fn name(&self) -> String {
+        "Random cache".to_string()
+    }
+
     fn size(&self) -> usize {
         self.table.len()
     }
