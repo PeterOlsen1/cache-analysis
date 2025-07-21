@@ -1,14 +1,22 @@
-use crate::traits::SimpleCache;
+use crate::{traits::SimpleCache, utils::write_file};
 use std::collections::HashMap;
 
 pub struct Freq {
-    table: HashMap<String, String>,
+    table: HashMap<String, (String, u32)>, // store frequency in table
+    freq_buckets: HashMap<u32, Vec<String>>,
 }
 
 impl Freq {
-    pub fn new() {
+    pub fn new() -> Freq {
         Freq {
-            talbe: HashMap::new(),
+            table: HashMap::new(),
+            freq_buckets: HashMap::new(),
+        }
+    }
+
+    fn promote_key(&mut self, key: &str, value: &str) {
+        if !self.contains(key) {
+            self.table.insert(key.to_string(), (value.to_string(), 1));
         }
     }
 }
@@ -19,7 +27,7 @@ impl SimpleCache for Freq {
     }
 
     fn size(&self) -> usize {
-        2
+        self.table.len()
     }
 
     fn get(&mut self, key: &str) -> Option<String> {
@@ -27,6 +35,7 @@ impl SimpleCache for Freq {
     }
 
     fn put(&mut self, key: &str, value: &str) {
+        let _ = write_file(key, value);
         ()
     }
 
@@ -35,6 +44,6 @@ impl SimpleCache for Freq {
     }
 
     fn contains(&self, key: &str) -> bool {
-        true
+        self.table.contains_key(key)
     }
 }

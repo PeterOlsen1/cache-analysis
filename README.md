@@ -18,3 +18,7 @@ To perform this experiment, we will be caching reads from files. The test proced
 * (clean up text files)
 
 Files will be stored in /var/tmp/cache-test/
+
+### NOTE:
+
+> The LRU cache uses an O(n) deletion, resulting in worse performance. This should be adjusted in future work
