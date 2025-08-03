@@ -13,12 +13,15 @@ fn main() {
         skew: 1.0,
     };
 
+    let mut no_cache = caches::None::new();
+    run_test(&mut no_cache, &config);
+
     let mut rand_cache = caches::Rand::new();
     run_test(&mut rand_cache, &config);
 
-    let mut lru_cache = caches::LRU::new();
-    run_test(&mut lru_cache, &config);
-
     let mut fifo_cache = caches::Fifo::new();
     run_test(&mut fifo_cache, &config);
+
+    let mut lru_cache = caches::LRU::new();
+    run_test(&mut lru_cache, &config);
 }

@@ -41,7 +41,9 @@ where
 }
 
 ///
-/// Generate a sequence
+/// Simulate a sequence in which we will access
+/// different data entries. Follows the zipf distribution
+/// to most closely simulate regular human access.
 ///
 fn generate_access_pattern(config: &TestConfig) -> Vec<usize> {
     let mut out = Vec::new();

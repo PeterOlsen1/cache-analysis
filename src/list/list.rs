@@ -2,6 +2,13 @@ use super::Node;
 use std::cell::RefCell;
 use std::rc::Rc;
 
+///
+/// Doubly linked list with smart pointers
+/// 
+/// The push method returns the newly created
+/// node, so that it can be deleted in
+/// O(1) time using its reference
+/// 
 pub struct RefList<T> {
     pub head: Option<Rc<RefCell<Node<T>>>>,
     pub tail: Option<Rc<RefCell<Node<T>>>>,
