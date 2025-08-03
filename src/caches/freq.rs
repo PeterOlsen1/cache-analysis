@@ -1,9 +1,11 @@
 use crate::{traits::SimpleCache, utils::write_file};
-use std::collections::HashMap;
+use std::{cell::RefCell, collections::HashMap, rc::Rc};
+use crate::list::{RefList, Node};
 
 pub struct Freq {
-    table: HashMap<String, (String, u32)>, // store frequency in table
-    freq_buckets: HashMap<u32, Vec<String>>,
+    table: HashMap<String, (String, u32, Rc<RefCell<String>>)>, // store frequency in table
+    freq_buckets: HashMap<u32, RefList<String>>,
+    min_freq: u32,
 }
 
 impl Freq {
@@ -11,6 +13,7 @@ impl Freq {
         Freq {
             table: HashMap::new(),
             freq_buckets: HashMap::new(),
+            min_freq: 0,
         }
     }
 
