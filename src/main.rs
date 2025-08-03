@@ -1,15 +1,16 @@
 mod caches;
+mod list;
 mod test;
 mod traits;
 mod utils;
 
-use test::{run_test, TestConfig};
+use test::{TestConfig, run_test};
 
 fn main() {
     let config = TestConfig {
         num_samples: 1000,
         num_accesses: 10000,
-        skew: 1.0
+        skew: 1.0,
     };
 
     let mut rand_cache = caches::Rand::new();
