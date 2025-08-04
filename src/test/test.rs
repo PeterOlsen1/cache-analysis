@@ -10,7 +10,7 @@ pub struct TestConfig {
     pub skew: f64,
 }
 
-pub fn run_test<T>(cache: &mut T, config: &TestConfig)
+pub fn run_test<T>(cache: &mut T, config: &TestConfig) -> u128
 where
     T: SimpleCache,
 {
@@ -37,7 +37,7 @@ where
     println!("Time for {} accesses: {:.3?}", config.num_accesses, diff);
 
     let _ = clean_files();
-    ()
+    diff.as_millis()
 }
 
 ///
