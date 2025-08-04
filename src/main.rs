@@ -18,10 +18,13 @@ fn main() {
 
     let mut rand_cache = caches::Rand::new();
     run_test(&mut rand_cache, &config);
-
+    
     let mut fifo_cache = caches::Fifo::new();
     run_test(&mut fifo_cache, &config);
-
+    
     let mut lru_cache = caches::LRU::new();
     run_test(&mut lru_cache, &config);
+
+    let mut freq_cache = caches::Freq::new();
+    run_test(&mut freq_cache, &config);
 }
